@@ -39,7 +39,7 @@ export function Search() {
         value={searchText}
         onChange={(e) => setSearchText(e.target.value)}
         placeholder="Search"
-        className="rounded-r-none focus-visible:ring-0 h-10 focus-visible:ring-transparent focus-visible:ring-offset-0"
+        className="rounded-r-none h-10 focus-visible:ring-0 focus-visible:ring-transparent focus-visible:ring-offset-0 border-0 bg-transparent"
       />
       {searchText && (
         <X
