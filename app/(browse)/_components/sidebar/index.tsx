@@ -3,18 +3,22 @@
 
 /**We use children-provider set-up because sometimes we have to import server component in the client component and so if we directly import the component and use it it will become a client component and therefore pass the component as the {children} 
  */
-import { Toggle } from "./toggle"
+import { Toggle, ToggleSkeleton } from "./toggle"
 import { Wrapper } from "./wrapper"
 import {Recommended, RecommendedSkeleton} from "./recommended"
 import { getRecommended } from "@/lib/recommended-service"
+import { getFollowedUsers } from "@/lib/follow-service"
+import { Following, FollowingSkeleton } from "./following"
 
 export const Sidebar=async ()=>{
 
     const data= await getRecommended();
+    const follows=await getFollowedUsers();
     return(
    <Wrapper>
     <Toggle/>
      <div className="space-y-4 pt-4 lg:pt-0">
+      <Following data={follows}/>
       <Recommended data={data} />
      </div>
    </Wrapper>
@@ -25,6 +29,8 @@ export const Sidebar=async ()=>{
 export const SidebarSkeleton =()=>{
   return(
     <aside className="fixed left-0 flex flex-col w-[70px] lg:w-60 h-full bg-background border-r border-[#2D2E35] z-50">
+      <ToggleSkeleton/>
+      <FollowingSkeleton/>
      <RecommendedSkeleton/>
     </aside>
   )
